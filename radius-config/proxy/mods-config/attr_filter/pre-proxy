@@ -1,0 +1,17 @@
+# -*- text -*-
+# file: proxy/mods-config/attr_filter/pre-proxy
+#
+# This filter will only keep information that is useful
+# for eduroam request forwarding.
+
+DEFAULT
+        User-Name =* ANY,
+        EAP-Message =* ANY,
+        Message-Authenticator =* ANY,
+        NAS-IP-Address =* ANY,
+        NAS-Identifier =* ANY,
+        State =* ANY,
+        Proxy-State =* ANY,
+        Calling-Station-Id =* ANY,
+        Called-Station-Id =* ANY,
+        Operator-Name =* ANY

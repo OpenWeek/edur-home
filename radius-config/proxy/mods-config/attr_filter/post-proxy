@@ -1,0 +1,26 @@
+# -*- text -*-
+# file: proxy/mods-config/attr_filter/post-proxy
+#
+# The post-proxy filter will drop extra parameters that are
+# not needed/interesing for processing the request further.
+
+DEFAULT
+	Framed-IP-Address == 255.255.255.254,
+	Framed-IP-Netmask == 255.255.255.255,
+	Framed-MTU >= 576,
+	Framed-Filter-ID =* ANY,
+	Reply-Message =* ANY,
+	Proxy-State =* ANY,
+	EAP-Message =* ANY,
+	Message-Authenticator =* ANY,
+	MS-MPPE-Recv-Key =* ANY,
+	MS-MPPE-Send-Key =* ANY,
+	MS-CHAP-MPPE-Keys =* ANY,
+	State =* ANY,
+	Session-Timeout <= 28800,
+	Idle-Timeout <= 600,
+	Calling-Station-Id =* ANY,
+	Operator-Name =* ANY,
+	User-Name =* ANY,
+	Chargeable-User-Identity =* ANY,
+	Port-Limit <= 2
