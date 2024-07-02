@@ -93,19 +93,12 @@ If the command returns `Access-Accept`, your configuration is correct, otherwise
 
 ### (TLS) failed loading legacy provider
 
-If you see this message when starting `radiusd -X` :
+If you see the message below when starting the FreeRADIUS (in debug mode):
 
 ```bash
-FreeRADIUS Version 3.0.26
-Copyright (C) 1999-2021 The FreeRADIUS server project and contributors
-There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE
-You may redistribute copies of FreeRADIUS under the terms of the
-GNU General Public License
-For more information about these matters, see the file named COPYRIGHT
+radiusd -X
+[...]
 (TLS) Failed loading legacy provide
 ```
 
-Run the following command to fix the issue: `opkg install libopenssl-legacy
-` (more info can found [here](https://github.com/openwrt/packages/issues/21428))
-
+You can refer to this [issue](https://github.com/openwrt/packages/issues/23188) on the OpenWRT GitHub repository and follow the workaround provided.
