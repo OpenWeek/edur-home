@@ -88,3 +88,24 @@ echo "User-Name=bob, User-Password=hello" | radclient -x localhost auth testing1
 ```
 
 If the command returns `Access-Accept`, your configuration is correct, otherwise check the logs in `/var/log/radius/radius.log`.
+
+## Troubleshooting
+
+### (TLS) failed loading legacy provider
+
+If you see this message when starting `radiusd -X` :
+
+```bash
+FreeRADIUS Version 3.0.26
+Copyright (C) 1999-2021 The FreeRADIUS server project and contributors
+There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE
+You may redistribute copies of FreeRADIUS under the terms of the
+GNU General Public License
+For more information about these matters, see the file named COPYRIGHT
+(TLS) Failed loading legacy provide
+```
+
+Run the following command to fix the issue: `opkg install libopenssl-legacy
+` (more info can found [here](https://github.com/openwrt/packages/issues/21428))
+
