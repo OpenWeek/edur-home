@@ -122,3 +122,15 @@ radiusd -X
 ```
 
 You can refer to this [issue](https://github.com/openwrt/packages/issues/23188) on the OpenWRT GitHub repository and follow the workaround provided.
+
+#### Ignoring request to auth address *
+
+If you see the message below when trying to authenticate with the RADIUS server (in debug mode):
+
+```bash
+radiusd -X
+[...]
+Ignoring request to auth address * port 1812 bound to server default from unknown client <your_pc_address> port 46085 proto udp
+```
+Make sure you have the correct client configuration in the `/etc/freeradius3/clients.conf` file.
+
