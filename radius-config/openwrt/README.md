@@ -61,6 +61,8 @@ opkg install wpa2-eap
 
 ### Configuration
 
+#### Wireless configuration
+
 On the OpenWRT interface, go to the `Network` tab, then `wireless` and add a new wireless network with the following settings:
 
 1. General setup tab
@@ -75,7 +77,25 @@ On the OpenWRT interface, go to the `Network` tab, then `wireless` and add a new
    - RADIUS Authentification Port : `1812`
    - RADIUS Authentification Secret : `your_secret` (the same as in the `clients.conf` file)
    - leave the rest as default
-  
+
+#### Clients configuration
+
+First, make sure you have an ip address assigned to your ethernet interface. If that's not the case you'll need to add an ip address to your ethernet interface to communicate with the radius server (we'll assume `192.168.2.1`) like this.
+
+```bash
+ip adrr add 192.168.2.1/24 dev <interface>
+```
+
+Edit the `/etc/freeradius3/clients.conf` file and add the following configuration:
+
+```conf
+client name {
+    ipaddr = 192.168.2.1
+    secret = your_secret # The same as in the wireless configuration
+}
+```
+
+Note : this is the minimum configuration, you can add more options if needed, refer to the FreeRADIUS / eduroam documentation for more information.
 
 #### Testing the configuration
 
@@ -84,7 +104,7 @@ First, you need to create a test user in the `/etc/freeradius3/mods-config/files
 uncomment the `bob` user.
 
 ```bash
-echo "User-Name=bob, User-Password=hello" | radclient -x localhost auth testing123
+echo "User-Name=bob, User-Password=hello" | radclient -x 192.168.1.1 auth testing123
 ```
 
 If the command returns `Access-Accept`, your configuration is correct, otherwise check the logs in `/var/log/radius/radius.log`.
